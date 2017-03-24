@@ -1,0 +1,23 @@
+<h3>Name: <%= current_user.first%> <%= current_user.last%></h3>
+<h3>Amount Needed: $<%= current_user.money%></h3>
+<h3>Amount Raised: $<%= @lent %></h3>
+
+<h3>List of people who lent you money</h3>
+<% if @lenders.exists? %>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Amount Lent</th>
+  </tr>
+  <% @lenders.each do |lender| %>
+  <tr>
+    <td><%= lender.lender.first%> <%= lender.lender.last%></td>
+    <td><%= lender.lender.email%></td>
+    <td><%= lender.amount%></td>
+  </tr>
+  <%end%>
+</table>
+<%else%>
+  <h5>No one has lent money yet!</h5>
+<%end%>

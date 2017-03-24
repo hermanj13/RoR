@@ -1,0 +1,12 @@
+<h1>Login</h1>
+<form action="/session/create" method="post">
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+<p>Email: <input type="text" name="email" id="Login Email" /></p>
+<p>Password: <input type="text" name="password" id="Login Password" /></p>
+
+<p><input type="radio" name="type" value="Borrower" checked > Borrower | <input type="radio" name="type" value="Lender"> Lender</p>
+
+<input type="submit" value="Login" id="Login"/>
+</form>
+
+<p><a href="/register">Click here to register</a></p>

@@ -1,0 +1,31 @@
+<h1>Lender</h1>
+<form action="/register" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="type" value="Lender"
+  <p>First Name: <input type="text" name="first" id="Lender First" /></p>
+  <p>Last Name: <input type="text" name="last" id="Lender Last" /></p>
+  <p>Email: <input type="text" name="email" id="Lender Email" /></p>
+  <p>Password: <input type="text" name="password" id="Lender Password" /></p>
+  <p>Password Confirmation: <input type="text" name="password_confirmation" id="Lender Password Confirmation"/></p>
+  <p>Money: <input type="text" name="money" id="Lender Money" /></p>
+  <input type="submit" value="Register" id="Lender Register"/>
+</form>
+<hr />
+
+<h2>Borrower</h2>
+<form action="/register" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="type" value="Borrower" />
+  <p>First Name: <input type="text" name="first" id="Borrower First" /></p>
+  <p>Last Name: <input type="text" name="last" id="Borrower Last" /></p>
+  <p>Email: <input type="text" name="email" id="Borrower Email" /></p>
+  <p>Password: <input type="text" name="password" id="Borrower Password" /></p>
+  <p>Password Confirmation: <input type="text" name="password_confirmation" id="Borrower Password Confirmation"/></p>
+  <p>Need Money for: <input type="purpose" name="purpose" id="Borrower Purpose"/></p>
+  <p>Description:</p>
+  <textarea rows="10" cols="30" name="description" id="Borrower Description"> </textarea>
+  <p>Amount Needed: <input type="text" name="money" id="Borrower Money" /></p>
+  <input type="submit" value="Register" id="Borrower Register"/>
+</form>
+
+<p><a href="/">Already Registeted?</a></p>

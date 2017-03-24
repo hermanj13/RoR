@@ -1,0 +1,59 @@
+<h3>Name: <%= current_user.first%> <%= current_user.last%></h3>
+<h3>Account Balance: $<%= current_user.money%></h3>
+
+<h3>List of people who are in need of help:</h3>
+<% if @need.exists? %>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Money Needed For</th>
+    <th>Description</th>
+    <th>Amount Needed</th>
+    <th>Amount Raised</th>
+    <th>Action</th>
+  </tr>
+  <% @need.each do |borrower| %>
+  <tr>
+    <td><%= borrower.first%> <%= borrower.last %></td>
+    <td><%= borrower.purpose%></td>
+    <td><%= borrower.description%></td>
+    <td><%= borrower.money%></td>
+    <td><%= borrower.historys.sum(:amount) %></td>
+    <td>
+      <form action="/lender/<%= borrower.id %>/lend" method="post">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <p><input type="text" name="amount" id="Amount" /><input type="submit" value="Lend" /></p>
+      </form>
+    </td>
+  </tr>
+  <%end%>
+</table>
+<%else%>
+  <h5>No one needs help!</h5>
+<%end%>
+
+<h3>List of people you lent money to:</h3>
+<% if @given.exists? %>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Money Needed For</th>
+    <th>Description</th>
+    <th>Amount Needed</th>
+    <th>Amount Raised</th>
+    <th>Amount Lent</th>
+  </tr>
+  <% @given.each do |lent| %>
+  <tr>
+    <td><%= lent.borrower.first%> <%= lent.borrower.last %></td>
+    <td><%= lent.borrower.purpose%></td>
+    <td><%= lent.borrower.description%></td>
+    <td><%= lent.borrower.money%></td>
+    <td><%= lent.borrower.raised%></td>
+    <td><%= lent.amount %></td>
+  </tr>
+  <%end%>
+</table>
+<%else%>
+  <h5>No money lent yet!</h5>
+<%end%>
