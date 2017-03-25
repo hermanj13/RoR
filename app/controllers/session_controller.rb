@@ -10,10 +10,10 @@ class SessionController < ApplicationController
     if params[:type] == "Lender"
       user = Lender.new(first: params[:first],last: params[:last], email: params[:email],password: params[:password], password_confirmation: params[:password_confirmation],money: params[:money])
       if user.save
-        user = Lender.find_by(:email => params[:email])
-        session[:user_id] = user.id
+        login = Lender.find_by(email: params[:email])
+        session[:user_id] = login.id
         session[:type_id] = "lender"
-        redirect_to "/lender/#{user.id}"
+        redirect_to "/lender/#{login.id}"
       else
         flash[:notice] = user.errors.full_messages
         redirect_to '/register'
@@ -21,10 +21,10 @@ class SessionController < ApplicationController
     elsif params[:type] == "Borrower"
       user = Borrower.new(first: params[:first],last: params[:last], email: params[:email],password: params[:password], password_confirmation: params[:password_confirmation],money: params[:money],purpose: params[:purpose], description: params[:description], raised: 0)
       if user.save
-        user = Borrower.find_by(:email => params[:email])
-        session[:user_id] = user.id
+        login = Borrower.find_by(email: params[:email])
+        session[:user_id] = login.id
         session[:type_id] = "borrower"
-        redirect_to "/borrower/#{user.id}"
+        redirect_to "/borrower/#{login.id}"
       else
         flash[:notice] = user.errors.full_messages
         redirect_to '/register'
